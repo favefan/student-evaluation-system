@@ -1,91 +1,91 @@
 
-[11] 章瑞,钱敏.追随、缄默与群体极化:突发事件网络舆情中的羊群效应[J].铜陵学院学报,2020,19(06):65-67+86.
-[12] 刘佳音.团购网站消费行为模式的信息经济分析[J].现代情报,2013,33(01):31-33+46.
-[13] 唐艺璇,常波峰,孙璐瑶,王启睿,田水承.突发事件下羊群行为对疏散效率的影响研究[J].西安科技大学学报, 2021,41(03):457-463.
-[14] 郝晓玲,陈晓梦.体验型产品消费行为的羊群效应及机理研究——基于电影行业消费行为的实证解释[J].中国管理科学,2019,27(11):176-188.
-[15] Subrahmanyam A, Titman S, Hirshleifer D A. Security Analysis and Trading Patterns When Some Investors Receive Information Before Others[J]. Journal of finance, 2012, (5):1665-1698.
-[16] Duan Wenjing, GuBin, Whinstonandrew B. Informational cascades and software adoption on the internet[J]. MIS Quarterly, 2009, (1):23-48.
-[17] Phasin Wanidwaranan, Chaiyuth Padungsaksawasdi. Unintentional herd behavior via the Google search volume index in international equity markets[J]. Journal of International Financial Markets, 2022, 77(3): 1-10.
-[18] 殷猛,李琪,刘洋.网络购物节中的羊群效应及其对冲动购物的影响—基于社会影响理论和羊群效应的实证[J].中国流通经济,2019,33(08):99-107.
-[19] 陈福集,黄江玲.基于演化博弈的网络舆情传播的羊群效应研究[J].情报杂志,2013,32(10):1-5.
-[20] 薛玉林,吕廷杰,齐佳音,陈霞.运用Floyd算法辨识羊群效应中的“头羊”(意见领袖)[J].中国管理科学,2014,22(S1):27-32.
-[21] 徐晋,梁米亚.论蚂蚁效应与数字经济—对羊群效应否命题的分析与应用[J].经济学家,2017(04):27-35.
-[22] Jikyung Kim, Hang Dong, et al. Sentiment change and negative herding: Evidence from microblogging and news[J]. Journal of Business Research, 2021,143(3): 364-376.
-[23] CYNTHIA W. Using the revised dictionary of affect in language to quantify the emotional undertones of samples of natural language[J]. Psychological Reports,2009,105(2):509-521.
-[24] 钟佳娃,刘巍,王思丽,等.文本情感分析方法及应用综述[J].数据分析与知识发现,2021,5(6):1-13.
-[25] 赵妍妍,秦兵,石秋慧,等.大规模情感词典的构建及其在情感分类中的应用[J]. 中文信息学报,2017,31(2):187-193.
-[26] 万岩,杜振中. 融合情感词典和语义规则的微博评论细粒度情感分析[J]. 情报探索,2020(11):34-41.
-[27] 邱全磊,崔宗敏,喻静.基于表情和语气的情感词典用于弹幕情感分析[J]. 计算机技术与发展,2020,30(8):178-182.
-[28] 高华玲,张晶.基于情感词典的酒店评论情感分析与可视化[J].软件,2021,42(1):45-47,66.
-[29] ASGHAR M Z, KHAN A, AHMAD S, et al. Lexicon-enhanced sentiment analysis framework using rule-based classification scheme[J]. PLoS One,2017,12(2): e0171649.
-[30] CAI Y, YANG K, HUANG D P, et al. A hybrid model for opinion mining based on domain sentiment dictionary[J]. International Journal of Machine Learning and Cybernetics,2019,10:2131-2142.
-[31] 吴杰胜.基于多部情感词典和深度学习的中文微博情感分析研究[D]. 淮南：安徽理工大学,2020:22-32.
-[32] 肖铮.常用的三种分类算法及其比较分析[J].重庆科技学院学报(自然科学版),2020,22(5):101-106.
-[33] 李静梅,孙丽华,张巧荣,等.一种文本处理中的朴素贝叶斯分类器[J].哈尔滨工程大学学报,2003(1):71-74.
-[34] 彭子豪,谭欣.并行化改进的朴素贝叶斯算法在中文文本分类上的应用[J].科学技术创新,2020,(26):176-178.
-[35] 杨爽,陈芬.基于SVM多特征融合的微博情感多级分类研究[J].数据分析与知识发现,2017,1(2):73-79.
-[36] 杨妥,李万龙,郑山红.融合情感分析与SVM_LSTM模型的股票指数预测[J].软件导刊,2020,19(8):14-18.
-[37] 孙翌博,濮泽堃,徐玉华,等.应用SD-LS-SVM算法的评论情感分析模型[J].软件导刊,2021,20(4):43-48.
-[38] 张成博.基于FV-SA-SVM的电影评论情感分析[D].上海：上海师范大学,2020:35-39.
-[39] HASAN A, MOIN S, KARIM A, et al. Machine learning-based sentiment analysis for twitter accounts[J]. Mathematical and Computational Applications,2018,23(1):11.
-[40] BAID P, GUPTA A, CHAPLOT N. Sentiment analysis of movie reviews using machine learning techniques[J]. International Journal of Computer Applications,2017,179(7):45-49.
-[41] AHMAD M, AFTAB S, BASHIR S, et al. SVM optimization for sentiment analysis[J]. International Journal Advanced Computer Science and Applications,2018,9(4):393-398.
-[42] MATHAPATI S, NAFEESA A, MANJULA S H, et al. OTAWE Optimized topic-adaptive word expansion for cross domain sentiment classification on tweets[M]//Advances in Machine Learning and DataScience. Singapore: Springer,2018,705:213-224.
-[43] BIRJALI M, BENI-HSSANE A, ERRITALI M. Machine learning and semantic sentiment analysis based algorithms for suicide sentiment prediction in social networks[J]. Procedia Computer Science,2017,113:65-72.
-[44] 胡家珩,岑咏华,吴承尧.基于深度学习的领域情感词典自动构建——以金融领域为例[J].数据分析与知识发现,2018,2(10):95-102.
-[45] 赵天锐,刘晨阳.基于深度学习的韩国语影评情感词典构建[J].信息技术与信息化,2021(1):250-253.
-[46] DWIVEDI R K, AGGARWAL M, KESHARI S K, et al. Sentiment analysis and feature extraction using rule-based model(RBM)[C]//Proceedings of the 2019 International Conference on Innovative Computingand Communications. Cham: Springer,2019:57-63.
-[47] 曹宇,李天瑞,贾真,等. BGRU:中文文本情感分析的新方法[J].计算机科学与探索,2019,13(6):973-981.
-[48] CAN E F, EZEN-CAN A, CAN F. Multilingual sentiment analysis: an RNN-based framework for limited data[EB/OL].[2018-06-08].
-[49] 潘红丽.基于RNN弱监督网络的英语语义分析技术研究[J].电子设计工程,2021,29(15):97-101.
-[50] WANG Y Q, HUANG M L, ZHU X Y, et al. Attention-based LSTM for aspect-level sentiment classification[C]//Proceedings of the 2016 Conference on Empirical Methods in Natural Language Processing. Stroudsburg, PA: Association for Computational Linguistics,2016:606-615.
-[51] GOPALAKRISHNAN K, SALEM F M. Sentiment analysis using simplified long short-term memory recurrent neural networks[EB/OL].[2020-05-08].
-[52] CHEN Y X, YUAN J B, YOU Q Z, et al. Twitter sentiment analysis via bi-sense emoji embedding and attention-based LSTM[C]//Proceedings of the 26th ACM international conference on Multimedia. New York:ACM,2018:117-125.
-[53] WEI J Y, LIAO J, YANG Z F, et al. Bi-LSTM with multi-polarity orthogonal attention for implicit sentiment analysis[J]. Neurocomputing,2020,383:165-173.
-[54] YADAV R K, JIAO L, GOODWIN M, et al. Position less aspect based sentiment analysis using attention mechanism[J]. Knowledge-Based Systems,2021,226:107136.
-[55] BAZIOTIS C, PELEKIS N, DOULKERIDIS C, et al. Data Stories at SemEval-2017 task 4: deep LSTM with attention for message level and topic-based sentiment analysis[C]//Proceedings of the11th International Workshop on Semantic Evaluation. Stroudsburg, PA: Association for Computational Linguistics 2017:747-754.
-[56] LIU Q, ZHANG H B, ZENG Y F, et al. Content attention model for aspect based sentiment analysis[C]//Proceedings of the 2018World Wide Web Conference. 2018:1023-1032.
-[57] CHEN P, SUN Z Q, BING L D, et al. Recurrent attention network on memory for aspect sentiment analysis[C]//Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing. Stroudsburg, PA: Association for Computational Linguistics 2017:452-461.
-[58] 梁斌,刘全,徐进,等.基于多注意力卷积神经网络的特定目标情感分析[J].计算机研究与发展,2017,54(8):1724-1735.
-[59] SANGEETHA K, PRABHA D. Sentiment analysis of student feedback using multi-head attention fusion model of word and context embedding for LSTM[J]. Journal of Ambient Intelligence and Humanized Computing,2021,12(6):4117-4126.
-[60] BASIRI M E, NEMATI S, ABDAR M, et al. ABCDM: an attention-based bidirectional CNN-RNN deep model for sentiment analysis[J]. FutureGenerationComputerSystems,2021,115:279-294.
-[61] REHMAN A U, MALIK A K, RAZA B, et al. A hybrid CNNLSTM model for improving accuracy of movie reviews sentiment analysis[J]. Multimedia Tools and Applications,2019,78(18):26597-26613.
-[62] 杜永萍,赵晓铮,裴兵兵.基于CNN-LSTM模型的短文本情感分类[J].北京工业大学学报,2019,45(7):662-670.
-[63] MINAEE S, AZIMI E, ABDOLRASHIDI A A. Deep-sentiment: sentiment analysis using ensemble of CNN and Bi-LSTM models[EB/OL].[2019-04-08].
-[64] LI Y Q, ZHANG K, WANG J Y, et al. A cognitive brain model for multimodal sentiment analysis based on attention neural networks[J]. Neurocomputing,2021,430:159-173.
-[65] 黄山成,韩东红,乔百友,等.基于ERNIE2. 0-BiLSTM-Attention的隐式情感分析方法[J].小型微型计算机系统,2021,42(12):2485-2489.
-[66] 徐超,叶宁,徐康,等.融合MAML与BiLSTM的微博负面情感多分类方法[J/OL].计算机工程与应用:1-11[2021-01-26].
-[67] 程艳,尧磊波,张光河,等.基于注意力机制的多通道CNN和BiGRU的文本情感倾向性分析[J].计算机研究与发展,2020,57(12):2583-2595.
-[68] 李卫疆,漆芳.基于多通道双向长短期记忆网络的情感分析[J].中文信息学报,2019,33(12):119-128.
-[69] WANG J, YU L C, LAI K R, et al. Tree-structured regional CNNLSTM model for dimensional sentiment analysis[J]. IEEE/ACM Transactions on Audio, Speech, and Language Processing,2020,28:581-591.
-[70] 赵亚欧,张家重,李贻斌,等.基于ELMo和Transformer混合模型的情感分析[J].中文信息学报,2021,35(3):115-124.
-[71] 李铮,陈莉,张爽.基于ELMo和Bi-SAN的中文文本情感分析[J].计算机应用研究,2021,38(8):2303-2307.
-[72] 胡任远,刘建华,卜冠南,等.融合BERT的多层次语义协同模型情感分析研究[J].计算机工程与应用,2021,57(13):176-184.
-[73] DEVLIN J, CHANG M W, LEE K, et al. BERT: pre-training of deep bidirectional transformers for language understanding[C]//Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Stroudsburg, PA: Association for Computational Linguistics,2019:4171-4186.
-[74] XU H, LIU B, SHU L, et al. DomBERT: domain-oriented language model for aspect-based sentiment analysis[C]//Proceedings of the 2020 Findings of the Association for Computational Linguistics. Stroudsburg, PA: Association for Computational Linguistics,2020:1725-1731.
-[75] SUN C, HUANG L, QIU X. Utilizing BERT for aspect-based sentiment analysis via constructing auxiliary sentence[C]//Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Stroudsburg, PA: Association for Computational Linguistics,2019:380-385.
-[76] YIN D, MENG T, CHANG K W. SentiBERT: a transferable transformer-based architecture for compositional sentiment semantics[C]//Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics. Stroudsburg, PA: Association for Computational Linguistics,2020:3695-3706.
-[77] 朱晓霞,宋嘉欣,张晓缇.基于主题挖掘技术的文本情感分析综述[J].情报理论与实践,2019,42(11):156-163.
-[78] Ingliar T, Hauskrecht M. Noisy-OR Component Analysis and its Application to Link Analysis[M].2006.
-[79] Wang Y. PLDA: Parallel Latent Dirichlet Allocation for Large-scale Applications[J]. Proc.AAIM,2009,2009,5564:301-314.
-[80] Bhutada S, Balaram VVSSS, Bulusu VV. Semantic latent dirichlet allocation for automatic topic extraction[J]. Journal of Information and Optimization Sciences, 2016, 37(3):449-469.
-[81] Wood J, Tan P, Wang W, Arnold C. Source-LDA: Enhancing Probabilistic Topic Models Using Prior Knowledge Sources. 2017 IEEE 33rd International Conference on Data Engineering (ICDE),2017.
-[82] 徐守坤,周佳,李宁,等.基于word2vec和LDA的文本主题[J].计算机工程与设计, 2018,39(09):72-77.
-[83] Jelodar H, Wang Y, Yuan C, et al. Latent Dirichlet allocation (LDA) and topic modeling: models, applications, a survey. Multimedia Tools and Applications. 2018,78(11):15169–211.
-[84] 程小刚,安梦佳,郭韧.基于聚类分析的网络舆情主题提取[J].计算机时代,2020(05):30-33+37.
-[85] 杨秀璋,宋卓远,赵凯,陈镱尹,杨鑫,杨云帆,赵小明,周既松,罗子江.基于LDA模型和情感分析的贵州景点舆情分析研究[J].现代计算机,2021,27(25):36-43.
-[86] 李玉媛,熊回香,杨梦婷,叶佳鑫.基于社会网络分析与LDA的虚拟学术社区中用户群体主题挖掘研究[J].情报科学,2021,39(11):110-116+132.
-[87] 王晰巍,李玥琪,刘婷艳,张柳.新冠肺炎疫情微博用户情感与主题挖掘的协同模型研究[J].情报学报,2021,40(03):223-233.
-[88] 祁瑞华,付豪.新冠肺炎疫情相关政策扩散特征与主题挖掘研究[J].智库理论与实践,2021,6(06):55-64.
-[89] 曾金,张耀峰,黄新杰,黄廷海.面向用户评论的主题挖掘研究——以美团为例[J/OL].情报科学:1-15[2022-06-21].
-[90] 党燕．面向舆情监控的微博热点话题发现及演化分析研究[D]．呼和浩特：内蒙古工业大学,2018．
-[91] Zhao B, Xu W, Ji G L, et al. Discovering Topic Evolution Topology in a Microblog Corpus[C]//Proceedings of the 3rd International Conference on Advanced Cloud and Big Data (CBD). IEEE, 2015. DOI: 10.1109/CBD.2015.12.
-[92] Wang J M, Wu X D, Li L. A Framework for Semantic Connection Based Topic Evolution with DeepWalk [J]. Intelligent Data Analysis, 2018, 22(1): 211-237.
-[93] 李慧,王丽婷.基于话题标签的微博热点话题演化研究[J].情报科学,2019,37(1):30-36.
-[94] 李纲,陈思菁,毛进,等.自然灾害事件微博热点话题的时空对比分析[J].数据分析与知识发现,2019,3(11):1-15.
-[95] Gao W, Peng M, Wang H, et al. Generation of Topic Evolution Graphs from Short Text Streams[J]. Neurocomputing, 2020, 383: 282-294.
-[96] 赵华,章成志.中英文突发事件话题演化对比研究——以H7N9微博为例[J].情报资料工作,2016(3):19-27.
-[97] 黄微,朱镇远,许烨婧,等.网络舆情衍进指数构建与实证分析[J].图书情报工作,2019,63(20):17-25.
-[98] Nolasco D, Oliveira J. Subevents Detection Through Topic Modeling in Social Media Posts[J]. Future Generation Computer Systems, 2019, 93: 290-303.
-[99]黄微,赵江元,闫璐.网络热点事件话题漂移指数构建与实证研究[J].数据分析与知识发现,2020,4(11):92-101.
-[100]朱恒民,钱莉,杨欣谊,魏静.网络舆情话题漂移路径研究[J].情报杂志,2022,41(06):108-113+119.
+[21] 章瑞,钱敏.追随、缄默与群体极化:突发事件网络舆情中的羊群效应[J].铜陵学院学报,2020,19(06):65-67+86.
+[22] 刘佳音.团购网站消费行为模式的信息经济分析[J].现代情报,2013,33(01):31-33+46.
+[23] 唐艺璇,常波峰,孙璐瑶,王启睿,田水承.突发事件下羊群行为对疏散效率的影响研究[J].西安科技大学学报, 2021,41(03):457-463.
+[24] 郝晓玲,陈晓梦.体验型产品消费行为的羊群效应及机理研究——基于电影行业消费行为的实证解释[J].中国管理科学,2019,27(11):176-188.
+[25] Subrahmanyam A, Titman S, Hirshleifer D A. Security Analysis and Trading Patterns When Some Investors Receive Information Before Others[J]. Journal of finance, 2012, (5):1665-1698.
+[26] Duan Wenjing, GuBin, Whinstonandrew B. Informational cascades and software adoption on the internet[J]. MIS Quarterly, 2009, (1):23-48.
+[27] Phasin Wanidwaranan, Chaiyuth Padungsaksawasdi. Unintentional herd behavior via the Google search volume index in international equity markets[J]. Journal of International Financial Markets, 2022, 77(3): 1-10.
+[28] 殷猛,李琪,刘洋.网络购物节中的羊群效应及其对冲动购物的影响—基于社会影响理论和羊群效应的实证[J].中国流通经济,2019,33(08):99-107.
+[29] 陈福集,黄江玲.基于演化博弈的网络舆情传播的羊群效应研究[J].情报杂志,2013,32(10):1-5.
+[30] 薛玉林,吕廷杰,齐佳音,陈霞.运用Floyd算法辨识羊群效应中的“头羊”(意见领袖)[J].中国管理科学,2014,22(S1):27-32.
+[31] 徐晋,梁米亚.论蚂蚁效应与数字经济—对羊群效应否命题的分析与应用[J].经济学家,2017(04):27-35.
+[32] Jikyung Kim, Hang Dong, et al. Sentiment change and negative herding: Evidence from microblogging and news[J]. Journal of Business Research, 2021,143(3): 364-376.
+[33] CYNTHIA W. Using the revised dictionary of affect in language to quantify the emotional undertones of samples of natural language[J]. Psychological Reports,2009,105(2):509-521.
+[34] 钟佳娃,刘巍,王思丽,等.文本情感分析方法及应用综述[J].数据分析与知识发现,2021,5(6):1-13.
+[35] 赵妍妍,秦兵,石秋慧,等.大规模情感词典的构建及其在情感分类中的应用[J]. 中文信息学报,2017,31(2):187-193.
+[36] 万岩,杜振中. 融合情感词典和语义规则的微博评论细粒度情感分析[J]. 情报探索,2020(11):34-41.
+[37] 邱全磊,崔宗敏,喻静.基于表情和语气的情感词典用于弹幕情感分析[J]. 计算机技术与发展,2020,30(8):178-182.
+[38] 高华玲,张晶.基于情感词典的酒店评论情感分析与可视化[J].软件,2021,42(1):45-47,66.
+[39] ASGHAR M Z, KHAN A, AHMAD S, et al. Lexicon-enhanced sentiment analysis framework using rule-based classification scheme[J]. PLoS One,2017,12(2): e0171649.
+[40] CAI Y, YANG K, HUANG D P, et al. A hybrid model for opinion mining based on domain sentiment dictionary[J]. International Journal of Machine Learning and Cybernetics,2019,10:2131-2142.
+[41] 吴杰胜.基于多部情感词典和深度学习的中文微博情感分析研究[D]. 淮南：安徽理工大学,2020:22-32.
+[42] 肖铮.常用的三种分类算法及其比较分析[J].重庆科技学院学报(自然科学版),2020,22(5):101-106.
+[43] 李静梅,孙丽华,张巧荣,等.一种文本处理中的朴素贝叶斯分类器[J].哈尔滨工程大学学报,2003(1):71-74.
+[44] 彭子豪,谭欣.并行化改进的朴素贝叶斯算法在中文文本分类上的应用[J].科学技术创新,2020,(26):176-178.
+[45] 杨爽,陈芬.基于SVM多特征融合的微博情感多级分类研究[J].数据分析与知识发现,2017,1(2):73-79.
+[46] 杨妥,李万龙,郑山红.融合情感分析与SVM_LSTM模型的股票指数预测[J].软件导刊,2020,19(8):14-18.
+[47] 孙翌博,濮泽堃,徐玉华,等.应用SD-LS-SVM算法的评论情感分析模型[J].软件导刊,2021,20(4):43-48.
+[48] 张成博.基于FV-SA-SVM的电影评论情感分析[D].上海：上海师范大学,2020:35-39.
+[49] HASAN A, MOIN S, KARIM A, et al. Machine learning-based sentiment analysis for twitter accounts[J]. Mathematical and Computational Applications,2018,23(1):11.
+[50] BAID P, GUPTA A, CHAPLOT N. Sentiment analysis of movie reviews using machine learning techniques[J]. International Journal of Computer Applications,2017,179(7):45-49.
+[51] AHMAD M, AFTAB S, BASHIR S, et al. SVM optimization for sentiment analysis[J]. International Journal Advanced Computer Science and Applications,2018,9(4):393-398.
+[52] MATHAPATI S, NAFEESA A, MANJULA S H, et al. OTAWE Optimized topic-adaptive word expansion for cross domain sentiment classification on tweets[M]//Advances in Machine Learning and DataScience. Singapore: Springer,2018,705:213-224.
+[53] BIRJALI M, BENI-HSSANE A, ERRITALI M. Machine learning and semantic sentiment analysis based algorithms for suicide sentiment prediction in social networks[J]. Procedia Computer Science,2017,113:65-72.
+[54] 胡家珩,岑咏华,吴承尧.基于深度学习的领域情感词典自动构建——以金融领域为例[J].数据分析与知识发现,2018,2(10):95-102.
+[55] 赵天锐,刘晨阳.基于深度学习的韩国语影评情感词典构建[J].信息技术与信息化,2021(1):250-253.
+[56] DWIVEDI R K, AGGARWAL M, KESHARI S K, et al. Sentiment analysis and feature extraction using rule-based model(RBM)[C]//Proceedings of the 2019 International Conference on Innovative Computingand Communications. Cham: Springer,2019:57-63.
+[57] 曹宇,李天瑞,贾真,等. BGRU:中文文本情感分析的新方法[J].计算机科学与探索,2019,13(6):973-981.
+[58] CAN E F, EZEN-CAN A, CAN F. Multilingual sentiment analysis: an RNN-based framework for limited data[EB/OL].[2018-06-08].
+[59] 潘红丽.基于RNN弱监督网络的英语语义分析技术研究[J].电子设计工程,2021,29(15):97-101.
+[60] WANG Y Q, HUANG M L, ZHU X Y, et al. Attention-based LSTM for aspect-level sentiment classification[C]//Proceedings of the 2016 Conference on Empirical Methods in Natural Language Processing. Stroudsburg, PA: Association for Computational Linguistics,2016:606-615.
+[61] GOPALAKRISHNAN K, SALEM F M. Sentiment analysis using simplified long short-term memory recurrent neural networks[EB/OL].[2020-05-08].
+[62] CHEN Y X, YUAN J B, YOU Q Z, et al. Twitter sentiment analysis via bi-sense emoji embedding and attention-based LSTM[C]//Proceedings of the 26th ACM international conference on Multimedia. New York:ACM,2018:117-125.
+[63] WEI J Y, LIAO J, YANG Z F, et al. Bi-LSTM with multi-polarity orthogonal attention for implicit sentiment analysis[J]. Neurocomputing,2020,383:165-173.
+[64] YADAV R K, JIAO L, GOODWIN M, et al. Position less aspect based sentiment analysis using attention mechanism[J]. Knowledge-Based Systems,2021,226:107136.
+[65] BAZIOTIS C, PELEKIS N, DOULKERIDIS C, et al. Data Stories at SemEval-2017 task 4: deep LSTM with attention for message level and topic-based sentiment analysis[C]//Proceedings of the11th International Workshop on Semantic Evaluation. Stroudsburg, PA: Association for Computational Linguistics 2017:747-754.
+[66] LIU Q, ZHANG H B, ZENG Y F, et al. Content attention model for aspect based sentiment analysis[C]//Proceedings of the 2018World Wide Web Conference. 2018:1023-1032.
+[67] CHEN P, SUN Z Q, BING L D, et al. Recurrent attention network on memory for aspect sentiment analysis[C]//Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing. Stroudsburg, PA: Association for Computational Linguistics 2017:452-461.
+[68] 梁斌,刘全,徐进,等.基于多注意力卷积神经网络的特定目标情感分析[J].计算机研究与发展,2017,54(8):1724-1735.
+[69] SANGEETHA K, PRABHA D. Sentiment analysis of student feedback using multi-head attention fusion model of word and context embedding for LSTM[J]. Journal of Ambient Intelligence and Humanized Computing,2021,12(6):4117-4126.
+[70] BASIRI M E, NEMATI S, ABDAR M, et al. ABCDM: an attention-based bidirectional CNN-RNN deep model for sentiment analysis[J]. FutureGenerationComputerSystems,2021,115:279-294.
+[71] REHMAN A U, MALIK A K, RAZA B, et al. A hybrid CNNLSTM model for improving accuracy of movie reviews sentiment analysis[J]. Multimedia Tools and Applications,2019,78(18):26597-26613.
+[72] 杜永萍,赵晓铮,裴兵兵.基于CNN-LSTM模型的短文本情感分类[J].北京工业大学学报,2019,45(7):662-670.
+[73] MINAEE S, AZIMI E, ABDOLRASHIDI A A. Deep-sentiment: sentiment analysis using ensemble of CNN and Bi-LSTM models[EB/OL].[2019-04-08].
+[74] LI Y Q, ZHANG K, WANG J Y, et al. A cognitive brain model for multimodal sentiment analysis based on attention neural networks[J]. Neurocomputing,2021,430:159-173.
+[75] 黄山成,韩东红,乔百友,等.基于ERNIE2. 0-BiLSTM-Attention的隐式情感分析方法[J].小型微型计算机系统,2021,42(12):2485-2489.
+[76] 徐超,叶宁,徐康,等.融合MAML与BiLSTM的微博负面情感多分类方法[J/OL].计算机工程与应用:1-11[2021-01-26].
+[77] 程艳,尧磊波,张光河,等.基于注意力机制的多通道CNN和BiGRU的文本情感倾向性分析[J].计算机研究与发展,2020,57(12):2583-2595.
+[78] 李卫疆,漆芳.基于多通道双向长短期记忆网络的情感分析[J].中文信息学报,2019,33(12):119-128.
+[79] WANG J, YU L C, LAI K R, et al. Tree-structured regional CNNLSTM model for dimensional sentiment analysis[J]. IEEE/ACM Transactions on Audio, Speech, and Language Processing,2020,28:581-591.
+[80] 赵亚欧,张家重,李贻斌,等.基于ELMo和Transformer混合模型的情感分析[J].中文信息学报,2021,35(3):115-124.
+[81] 李铮,陈莉,张爽.基于ELMo和Bi-SAN的中文文本情感分析[J].计算机应用研究,2021,38(8):2303-2307.
+[82] 胡任远,刘建华,卜冠南,等.融合BERT的多层次语义协同模型情感分析研究[J].计算机工程与应用,2021,57(13):176-184.
+[83] DEVLIN J, CHANG M W, LEE K, et al. BERT: pre-training of deep bidirectional transformers for language understanding[C]//Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Stroudsburg, PA: Association for Computational Linguistics,2019:4171-4186.
+[84] XU H, LIU B, SHU L, et al. DomBERT: domain-oriented language model for aspect-based sentiment analysis[C]//Proceedings of the 2020 Findings of the Association for Computational Linguistics. Stroudsburg, PA: Association for Computational Linguistics,2020:1725-1731.
+[85] SUN C, HUANG L, QIU X. Utilizing BERT for aspect-based sentiment analysis via constructing auxiliary sentence[C]//Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Stroudsburg, PA: Association for Computational Linguistics,2019:380-385.
+[86] YIN D, MENG T, CHANG K W. SentiBERT: a transferable transformer-based architecture for compositional sentiment semantics[C]//Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics. Stroudsburg, PA: Association for Computational Linguistics,2020:3695-3706.
+[87] 朱晓霞,宋嘉欣,张晓缇.基于主题挖掘技术的文本情感分析综述[J].情报理论与实践,2019,42(11):156-163.
+[88] Ingliar T, Hauskrecht M. Noisy-OR Component Analysis and its Application to Link Analysis[M].2006.
+[89] Wang Y. PLDA: Parallel Latent Dirichlet Allocation for Large-scale Applications[J]. Proc.AAIM,2009,2009,5564:301-314.
+[90] Bhutada S, Balaram VVSSS, Bulusu VV. Semantic latent dirichlet allocation for automatic topic extraction[J]. Journal of Information and Optimization Sciences, 2016, 37(3):449-469.
+[91] Wood J, Tan P, Wang W, Arnold C. Source-LDA: Enhancing Probabilistic Topic Models Using Prior Knowledge Sources. 2017 IEEE 33rd International Conference on Data Engineering (ICDE),2017.
+[92] 徐守坤,周佳,李宁,等.基于word2vec和LDA的文本主题[J].计算机工程与设计, 2018,39(09):72-77.
+[93] Jelodar H, Wang Y, Yuan C, et al. Latent Dirichlet allocation (LDA) and topic modeling: models, applications, a survey. Multimedia Tools and Applications. 2018,78(11):15169–211.
+[94] 程小刚,安梦佳,郭韧.基于聚类分析的网络舆情主题提取[J].计算机时代,2020(05):30-33+37.
+[95] 杨秀璋,宋卓远,赵凯,陈镱尹,杨鑫,杨云帆,赵小明,周既松,罗子江.基于LDA模型和情感分析的贵州景点舆情分析研究[J].现代计算机,2021,27(25):36-43.
+[96] 李玉媛,熊回香,杨梦婷,叶佳鑫.基于社会网络分析与LDA的虚拟学术社区中用户群体主题挖掘研究[J].情报科学,2021,39(11):110-116+132.
+[97] 王晰巍,李玥琪,刘婷艳,张柳.新冠肺炎疫情微博用户情感与主题挖掘的协同模型研究[J].情报学报,2021,40(03):223-233.
+[98] 祁瑞华,付豪.新冠肺炎疫情相关政策扩散特征与主题挖掘研究[J].智库理论与实践,2021,6(06):55-64.
+[99] 曾金,张耀峰,黄新杰,黄廷海.面向用户评论的主题挖掘研究——以美团为例[J/OL].情报科学:1-15[2022-06-21].
+[100] 党燕．面向舆情监控的微博热点话题发现及演化分析研究[D]．呼和浩特：内蒙古工业大学,2018．
+[101] Zhao B, Xu W, Ji G L, et al. Discovering Topic Evolution Topology in a Microblog Corpus[C]//Proceedings of the 3rd International Conference on Advanced Cloud and Big Data (CBD). IEEE, 2015. DOI: 10.1109/CBD.2015.12.
+[102] Wang J M, Wu X D, Li L. A Framework for Semantic Connection Based Topic Evolution with DeepWalk [J]. Intelligent Data Analysis, 2018, 22(1): 211-237.
+[103] 李慧,王丽婷.基于话题标签的微博热点话题演化研究[J].情报科学,2019,37(1):30-36.
+[104] 李纲,陈思菁,毛进,等.自然灾害事件微博热点话题的时空对比分析[J].数据分析与知识发现,2019,3(11):1-15.
+[105] Gao W, Peng M, Wang H, et al. Generation of Topic Evolution Graphs from Short Text Streams[J]. Neurocomputing, 2020, 383: 282-294.
+[106] 赵华,章成志.中英文突发事件话题演化对比研究——以H7N9微博为例[J].情报资料工作,2016(3):19-27.
+[107] 黄微,朱镇远,许烨婧,等.网络舆情衍进指数构建与实证分析[J].图书情报工作,2019,63(20):17-25.
+[108] Nolasco D, Oliveira J. Subevents Detection Through Topic Modeling in Social Media Posts[J]. Future Generation Computer Systems, 2019, 93: 290-303.
+[109]黄微,赵江元,闫璐.网络热点事件话题漂移指数构建与实证研究[J].数据分析与知识发现,2020,4(11):92-101.
+[110]朱恒民,钱莉,杨欣谊,魏静.网络舆情话题漂移路径研究[J].情报杂志,2022,41(06):108-113+119.

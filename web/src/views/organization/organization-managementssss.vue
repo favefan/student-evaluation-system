@@ -1,28 +1,34 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <!-- <el-input v-model="listQuery.username" placeholder="用户名" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
-      <el-select v-model="listQuery.role" placeholder="角色" clearable class="filter-item" style="width: 180px">
-        <el-option v-for="item in roleTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key" />
+      <!-- <el-input v-model="listQuery.title" placeholder="Title" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-select v-model="listQuery.importance" placeholder="Imp" clearable style="width: 90px" class="filter-item">
+        <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
       </el-select>
-      <el-select v-model="listQuery.status" placeholder="状态" clearable class="filter-item" style="width: 180px">
-        <el-option v-for="item in statusTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key" />
+      <el-select v-model="listQuery.type" placeholder="Type" clearable class="filter-item" style="width: 130px">
+        <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key" />
+      </el-select>
+      <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
+        <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
       </el-select>
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
-        过滤
+        Search
       </el-button> -->
       <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit" @click="handleCreate">
-        新建组织
+        创建组织
       </el-button>
-      <!-- <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" disabled @click="handleDownload">
-        Export 待定
-      </el-button> -->
+      <!-- <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
+        Export
+      </el-button>
+      <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
+        reviewer
+      </el-checkbox> -->
     </div>
 
     <el-table
       :key="tableKey"
       v-loading="listLoading"
-      :data="departmentList"
+      :data="list"
       border
       fit
       highlight-current-row
@@ -36,7 +42,7 @@
       </el-table-column>
       <el-table-column label="创建时间" width="150px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.create_at | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
       </el-table-column>
       <!-- <el-table-column label="Title" min-width="150px">
@@ -47,7 +53,7 @@
       </el-table-column> -->
       <el-table-column label="组织名称" width="110px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.name }}</span>
+          <span>{{ row.author }}</span>
         </template>
       </el-table-column>
       <!-- <el-table-column v-if="showReviewer" label="Reviewer" width="110px" align="center">
@@ -62,9 +68,8 @@
       </el-table-column> -->
       <el-table-column label="上一级组织" align="center" width="95">
         <template slot-scope="{row}">
-          <!-- <span v-if="row.pageviews" class="link-type" @click="handleFetchPv(row.pageviews)">{{ row.pageviews }}</span>
-          <span v-else>0</span> -->
-          <span>{{ row.superior_department_id }}</span>
+          <span v-if="row.pageviews" class="link-type" @click="handleFetchPv(row.pageviews)">{{ row.pageviews }}</span>
+          <span v-else>0</span>
         </template>
       </el-table-column>
       <!-- <el-table-column label="Status" class-name="status-col" width="100">
@@ -95,19 +100,28 @@
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="170px" style="width: 400px; margin-left:50px;">
-        <el-form-item label="组织名称" prop="username">
-          <el-input v-model="temp.name" />
+      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="150px" style="width: 400px; margin-left:50px;">
+        <!-- <el-form-item label="Date" prop="timestamp">
+          <el-date-picker v-model="temp.timestamp" type="datetime" placeholder="Please pick a date" />
+        </el-form-item> -->
+        <el-form-item label="组织名称" prop="title">
+          <el-input v-model="temp.title" />
         </el-form-item>
-        <el-form-item label="上一级组织" prop="role">
-          <el-select v-model="temp.role" class="filter-item" placeholder="请选择...">
-            <el-option v-for="item in roleList" :key="item.id" :label="item.name" :value="item.id" />
+        <el-form-item label="上一级组织" prop="type">
+          <el-select v-model="temp.type" class="filter-item" placeholder="Please select">
+            <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
           </el-select>
         </el-form-item>
-        <!-- <el-form-item label="帐号状态" prop="status">
-          <el-select v-model="temp.status" class="filter-item" placeholder="请选择...">
-            <el-option v-for="item in statusOptions" :key="item.key" :label="item.status" :value="item.key" />
+        <!-- <el-form-item label="Status">
+          <el-select v-model="temp.status" class="filter-item" placeholder="Please select">
+            <el-option v-for="item in statusOptions" :key="item" :label="item" :value="item" />
           </el-select>
+        </el-form-item>
+        <el-form-item label="Imp">
+          <el-rate v-model="temp.importance" :colors="['#99A9BF', '#F7BA2A', '#FF9900']" :max="3" style="margin-top:8px;" />
+        </el-form-item>
+        <el-form-item label="Remark">
+          <el-input v-model="temp.remark" :autosize="{ minRows: 2, maxRows: 4}" type="textarea" placeholder="Please input" />
         </el-form-item> -->
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -126,140 +140,103 @@
         <el-table-column prop="pv" label="Pv" />
       </el-table>
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogPvVisible = false">确认</el-button>
+        <el-button type="primary" @click="dialogPvVisible = false">Confirm</el-button>
       </span>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { fetchdepartmentList, createAccount, changeAccountStatus, updateAccount, deleteAccount } from '@/api/permission'
+import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article'
 import { fetchDepartmentList, fetchPv, createArticle, updateArticle } from '@/api/department'
-import { getRoles } from '@/api/role'
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 
-const roleTypeOptions = [
-  { key: 'admin', display_name: '系统管理员' },
-  { key: 'class_master', display_name: '班级负责人' }
-  // { key: 'student', display_name: '学生' }
+const calendarTypeOptions = [
+  { key: 'CN', display_name: 'China' },
+  { key: 'US', display_name: 'USA' },
+  { key: 'JP', display_name: 'Japan' },
+  { key: 'EU', display_name: 'Eurozone' }
 ]
 
-const statusTypeOptions = [
-  { key: '1', display_name: '启用' },
-  { key: '0', display_name: '禁用' },
-  { key: '9', display_name: '已删除' }
-]
+// arr to obj, such as { CN : "China", US : "USA" }
+const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
+  acc[cur.key] = cur.display_name
+  return acc
+}, {})
 
 export default {
   name: 'ComplexTable',
   components: { Pagination },
   directives: { waves },
   filters: {
-    statusStyleFilter(status) {
+    statusFilter(status) {
       const statusMap = {
-        1: 'success',
-        0: 'info',
-        9: 'danger'
+        published: 'success',
+        draft: 'info',
+        deleted: 'danger'
       }
       return statusMap[status]
     },
-    status2ShowFilter(status) {
-      const status2ShowMap = {
-        1: '启用',
-        0: '禁用',
-        9: '已删除'
-      }
-      return status2ShowMap[status]
-    },
-    role2ShowFilter(role) {
-      const role2ShowMap = {
-        admin: '系统管理员',
-        class_master: '班级负责人',
-        student: '学生'
-      }
-      return role2ShowMap[role]
+    typeFilter(type) {
+      return calendarTypeKeyValue[type]
     }
-    // typeFilter(type) {
-    //   return calendarTypeKeyValue[type]
-    // }
   },
   data() {
     return {
       tableKey: 0,
-      departmentList: null,
-      roleList: null,
+      list: null,
       total: 0,
       listLoading: true,
       listQuery: {
         page: 1,
         limit: 20,
         importance: undefined,
-        username: undefined,
-        role: undefined,
-        status: undefined,
+        title: undefined,
+        type: undefined,
         sort: '+id'
       },
       importanceOptions: [1, 2, 3],
-      // calendarTypeOptions,
-      roleTypeOptions,
-      statusTypeOptions,
+      calendarTypeOptions,
       sortOptions: [{ label: 'ID Ascending', key: '+id' }, { label: 'ID Descending', key: '-id' }],
-      statusOptions: [{
-          status: '启用',
-          key: 1
-        },
-        {
-          status: '禁用',
-          key: 0
-        },
-        // {
-        //   status: 'deleted',
-        //   key: 9
-        // }
-      ],
-      rolesOptions: [],
-      // showReviewer: false,
+      statusOptions: ['published', 'draft', 'deleted'],
+      showReviewer: false,
       temp: {
-        status: 1,
-        role: '',
-        username: '',
-        password: ''
+        id: undefined,
+        importance: 1,
+        remark: '',
+        timestamp: new Date(),
+        title: '',
+        type: '',
+        status: 'published'
       },
       dialogFormVisible: false,
       dialogStatus: '',
       textMap: {
-        update: '修改组织',
-        create: '新建组织'
+        update: '修改',
+        create: '创建组织'
       },
       dialogPvVisible: false,
       pvData: [],
-      rules: { // rules of DataForm in dialog
-        username: [{ required: true, message: '用户名的必须的', trigger: 'blur' }],
-        password: [{ required: true, message: '密码是必须的', trigger: 'blur' }],
-        role: [{ required: true, message: '角色是必须的', trigger: 'blur' }],
-        status: [{ required: true, message: '状态是必须的', trigger: 'blur' }],
+      rules: {
+        type: [{ required: true, message: 'type is required', trigger: 'change' }],
+        timestamp: [{ type: 'date', required: true, message: 'timestamp is required', trigger: 'change' }],
+        title: [{ required: true, message: 'title is required', trigger: 'blur' }]
       },
       downloadLoading: false
     }
   },
   created() {
     this.getList()
-    this.getRolesList()
   },
   methods: {
     getList() {
       this.listLoading = true
       fetchDepartmentList(this.listQuery).then(response => {
-        this.departmentList = response.data.items
+        this.list = response.data.items
         this.total = response.data.total
         this.listLoading = false
-      })
-    },
-    getRolesList() {
-      getRoles().then(response => {
-        this.roleList = response.data.items
       })
     },
     handleFilter() {
@@ -267,14 +244,11 @@ export default {
       this.getList()
     },
     handleModifyStatus(row, status) {
-      changeAccountStatus({ id: row.id, status: status }).then(() => {
-        this.$message({
-          message: '组织状态切换成功',
-          type: 'success'
-        })
-        // row.status = status
-        this.getList()
+      this.$message({
+        message: '操作Success',
+        type: 'success'
       })
+      row.status = status
     },
     sortChange(data) {
       const { prop, order } = data
@@ -292,10 +266,13 @@ export default {
     },
     resetTemp() {
       this.temp = {
-        status: 1,
-        role: '',
-        username: '',
-        password: ''
+        id: undefined,
+        importance: 1,
+        remark: '',
+        timestamp: new Date(),
+        title: '',
+        status: 'published',
+        type: ''
       }
     },
     handleCreate() {
@@ -309,15 +286,14 @@ export default {
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          // this.temp.id = parseInt(Math.random() * 100) + 1024 // mock a id
-          // this.temp.author = 'vue-element-admin'
-          createAccount(this.temp).then(() => {
-            // this.departmentList.unshift(this.temp)
-            this.getList()
+          this.temp.id = parseInt(Math.random() * 100) + 1024 // mock a id
+          this.temp.author = 'vue-element-admin'
+          createArticle(this.temp).then(() => {
+            this.list.unshift(this.temp)
             this.dialogFormVisible = false
             this.$notify({
               title: 'Success',
-              message: '创建成功',
+              message: 'Created Successfully',
               type: 'success',
               duration: 2000
             })
@@ -354,16 +330,13 @@ export default {
       })
     },
     handleDelete(row, index) {
-      deleteAccount(index).then(() => {
-        this.$notify({
+      this.$notify({
         title: 'Success',
-        message: '组织删除成功',
+        message: 'Delete Successfully',
         type: 'success',
         duration: 2000
       })
-        // this.list.splice(index, 1)
-        this.getList()
-      })
+      this.list.splice(index, 1)
     },
     handleFetchPv(pv) {
       fetchPv(pv).then(response => {

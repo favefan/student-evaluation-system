@@ -196,3 +196,39 @@ def role_list():
     }
 
     return make_response((response, 200, headers))
+
+
+@app.route('/api/department/list')
+def department_list():
+    page = int(request.args.get('page'))
+    limit = int(request.args.get('limit'))
+    sort = Department.id if request.args.get('sort') == '+id' else Account.id.desc()
+
+    data_by_query = db.session.query(Department).order_by(sort).offset((page - 1) * limit).limit(limit).all()
+
+    result_data = []
+    for row in data_by_query:
+        row_dict = row.__dict__
+        print(row.superior_department)
+        if '_sa_instance_state' in row_dict:
+            del row_dict['_sa_instance_state']
+        print(row.superior_department_id)
+        if row.superior_department_id is None:
+            superior_department_name = '无'
+        else:
+            superior_department = db.session.query(Department).filter(Department.superior_department == row.superior_department).first()
+            superior_department_name = superior_department.name
+        row_dict['superior_department_name'] = superior_department_name
+        result_data.append(row_dict)
+
+    count = db.session.query(Department).count()
+
+    response = {
+        'code': 20000,
+        'data': {
+            'total': count,
+            'items': result_data
+        }
+    }
+
+    return make_response((response, 200, headers))
