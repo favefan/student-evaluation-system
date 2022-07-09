@@ -1,7 +1,10 @@
-from flask_script import Manager, Server
 from flask_migrate import MigrateCommand, Migrate, upgrade
-from ses.app import app, db
-from ses.models_test import *
+from flask_script import Manager, Server
+
+from ses.routes import app
+from ses.models import *
+
+from flask_cors import CORS
 
 manager = Manager(app)
 migrate = Migrate(app, db)
@@ -18,4 +21,5 @@ def deploy():
 
 
 if __name__ == '__main__':
+    CORS(app, supports_credentials=True)
     manager.run()

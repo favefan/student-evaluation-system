@@ -1,10 +1,12 @@
+import sqlalchemy
 from flask import Flask, request, make_response
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+import xlrd
 
 from ses import app, db
-from ses.models import Account, Role, Department, ScoreRecord, EvaluationRecord
+from ses.models import Account, Role, Department, ScoreRecord, EvaluationRecord, Personnel, EvaluationMaterial
 
 # db = SQLAlchemy()
 # migrate = Migrate()
@@ -24,7 +26,7 @@ headers = {
 
 @app.route('/api/routes')
 def routes_list():
-    pass
+    return make_response(({}, 200, headers))
 
 
 """登录模块
@@ -61,7 +63,7 @@ def login():
 
 @app.route('/api/logout', methods=['POST'])
 def logout():
-    pass
+    return make_response(({'code': 20000, 'message': 'success'}, 200, headers))
 
 
 """角色管理模块
@@ -124,8 +126,12 @@ def account_list():
     page = int(request.args.get('page'))
     limit = int(request.args.get('limit'))
     sort = Account.id if request.args.get('sort') == '+id' else Account.id.desc()
-
-    data_by_query = db.session.query(Account).order_by(sort).offset((page - 1) * limit).limit(limit).all()
+    username = request.args.get('username', None)
+    if username is None:
+        data_by_query = db.session.query(Account).order_by(sort).offset((page - 1) * limit).limit(limit).all()
+    else:
+        data_by_query = db.session.query(Account).filter(Account.username.like(f'%{username}%')) \
+            .order_by(sort).offset((page - 1) * limit).limit(limit).all()
 
     result_data = []
     for row in data_by_query:
@@ -208,15 +214,17 @@ def account_create():
 @app.route('/api/account/update', methods=['POST'])
 def account_update():
     data = request.get_json()
-    username = data['username']
-    existing_account = db.session.query(Account).filter(Account.username == username).first()
+    original_username = data['original_username']
+    existing_account = db.session.query(Account).filter(Account.username == original_username).first()
     if existing_account is None:
         return make_response(({
                                   'code': 40004,
                                   'message': '账号不存在'
                               }, 200, headers))
 
-    new_account = db.session.query(Account).filter(Account.username == username).update(data)
+    new_account = db.session.query(Account).filter(Account.username == original_username) \
+        .update({'username': data['username'], 'password': generate_password_hash(data['password']),
+                 'status': data['status'], 'role_id': data['role_id']})
     db.session.commit()
 
     return make_response(({
@@ -252,22 +260,204 @@ def account_delete(id):
 
 @app.route('/api/personnel/list')
 def personnel_list():
-    pass
+    page = int(request.args.get('page'))
+    limit = int(request.args.get('limit'))
+    sort = Personnel.id if request.args.get('sort') == '+id' else Personnel.id.desc()
+    name = request.args.get('name', None)
+    if name is None:
+        data_by_query = db.session.query(Personnel).order_by(sort).offset((page - 1) * limit).limit(limit).all()
+    else:
+        data_by_query = db.session.query(Personnel).filter(Personnel.name.like(f'%{name}%')) \
+            .order_by(sort).offset((page - 1) * limit).limit(limit).all()
+
+    # all_accounts = db.session.query(Account).all()
+    # all_department = db.session.query(Department).all()
+
+    result_data = []
+    for row in data_by_query:
+        row_dict = row.__dict__
+        if '_sa_instance_state' in row_dict:
+            del row_dict['_sa_instance_state']
+        account_username = db.session.query(Account).filter(Account.id == row.account_id).first().username
+        account_status = db.session.query(Account).filter(Account.id == row.account_id).first().status
+        department_name = db.session.query(Department).filter(Department.id == row.department_id).first().name
+        row_dict['account_username'] = account_username
+        row_dict['account_status'] = account_status
+        row_dict['department_name'] = department_name
+        result_data.append(row_dict)
+
+    count = db.session.query(Personnel).count()
+
+    response = {
+        'code': 20000,
+        'data': {
+            'total': count,
+            'items': result_data
+        }
+    }
+
+    return make_response((response, 200, headers))
 
 
 @app.route('/api/personnel/create', methods=['POST'])
 def personnel_create():
-    pass
+    data = request.get_json()
+    name = data['name']
+    personnel_code = data['personnel_code']
+    department_id = data['department']
+    account_status = data['account_status']
+    is_student = data['is_student']
+    existing_personnel = db.session.query(Personnel).filter(Personnel.personnel_code == personnel_code).first()
+    if existing_personnel is not None:
+        return make_response(({
+                                  'code': 40004,
+                                  'message': '人员已存在'
+                              }, 200, headers))
+
+    new_account = Account(username=personnel_code, password=generate_password_hash(personnel_code),
+                          role_id=1, status=account_status)
+    db.session.add(new_account)
+    db.session.commit()
+
+    existing_account = db.session.query(Account).filter(Account.username == personnel_code).first()
+
+    new_personnel = Personnel(name=name, personnel_code=personnel_code,
+                              department_id=department_id, account_id=existing_account.id, is_student=is_student)
+
+    db.session.add(new_personnel)
+    db.session.commit()
+
+    existing_personnel = db.session.query(Personnel).filter(Personnel.personnel_code == personnel_code).first()
+
+    if existing_account is None:
+        return make_response(({
+                                  'code': 40004,
+                                  'message': '创建人员失败'
+                              }, 200, headers))
+
+    return make_response(({
+                              'code': 20000,
+                              'message': '创建人员成功'
+                          }, 200, headers))
 
 
 @app.route('/api/personnel/update', methods=['POST'])
 def personnel_update():
-    pass
+    data = request.get_json()
+    id = data['id']
+    account_id = data['account_id']
+    existing_personnel = db.session.query(Personnel).filter(Personnel.id == id).first()
+    if existing_personnel is None:
+        return make_response(({
+                                  'code': 40004,
+                                  'message': '人员不存在'
+                              }, 200, headers))
+
+    new_account = db.session.query(Account).filter(Account.id == account_id) \
+        .update({'status': data['account_status']})
+    db.session.commit()
+
+    new_personnel = db.session.query(Personnel).filter(Personnel.id == existing_personnel.id) \
+        .update({'name': data['name'], 'personnel_code': data['personnel_code'],
+                 'department_id': data['department']})
+    db.session.commit()
+
+    return make_response(({
+                              'code': 20000,
+                              'message': '人员信息更新成功'
+                          }, 200, headers))
 
 
-@app.route('/api/personnel/delete')
-def personnel_delete():
-    pass
+@app.route('/api/personnel/delete/<int:id>')
+def personnel_delete(id):
+    personnel_id = id
+    existing_personnel = db.session.query(Personnel).filter(Personnel.id == personnel_id).first()
+    account_id = existing_personnel.account_id
+    existing_score_record = db.session.query(ScoreRecord).filter(
+        ScoreRecord.student_id == existing_personnel.id).first()
+    if existing_score_record is not None:
+        ems = db.session.query(EvaluationMaterial).filter(
+            EvaluationMaterial.score_record_id == existing_score_record.id)
+        ems.delete() if ems is not None else None
+    srs = db.session.query(ScoreRecord).filter(ScoreRecord.student_id == existing_personnel.id)
+    srs.delete() if srs is not None else None
+    ers = db.session.query(EvaluationRecord).filter(EvaluationRecord.personnel_id == existing_personnel.id)
+    ers.delete() if ers is not None else None
+    db.session.query(Personnel).filter(Personnel.id == personnel_id).delete()
+    db.session.query(Account).filter(Account.id == account_id).delete()
+    db.session.commit()
+    return make_response(({'code': 20000, 'message': '人员及惯量账号删除成功'}, 200, headers))
+
+
+UPLOAD_FOLDER = '/path/to/the/uploads'
+ALLOWED_EXTENSIONS = {'xlsx', 'xls'}
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/api/personnel/upload', methods=['GET', 'POST'])
+def upload_excel():
+    if request.method == 'POST':
+        file = request.files.get('file')
+        f = file.read()
+        clinic_file = xlrd.open_workbook(file_contents=f)
+        # sheet1
+        table = clinic_file.sheet_by_index(0)
+        nrows = table.nrows
+        for i in range(2, nrows):
+            # new = RenyuanQuanxian()
+            row_data = table.row_values(i)
+            print(row_data)
+            # print(row_date)
+            # new.账户 = str(row_date[1])
+            # new.密码 = str(row_date[2])
+            # db.session.add(new)
+            # db.session.commit()
+            # db.session.close()
+    return make_response(({}, 200, headers))
+
+
+@app.route('/api/personnel/upload_content/<int:is_student>', methods=['POST'])
+def upload_excel_content(is_student):
+    data = request.get_json()
+    for row in data:
+        existing_personnel = db.session.query(Personnel).filter(Personnel.personnel_code == row['工号']).first()
+        if existing_personnel is not None:
+            return make_response(({
+                                      'code': 40004,
+                                      'message': '人员已存在'
+                                  }, 200, headers))
+
+        new_account = Account(username=row['工号'], password=generate_password_hash(str(row['工号'])),
+                              role_id=1, status=row['帐号状态'])
+        db.session.add(new_account)
+        db.session.commit()
+
+        existing_account = db.session.query(Account).filter(Account.username == str(row['工号'])).first()
+
+        existing_department = db.session.query(Department).filter(Department.name == row['部门']).first()
+
+        new_personnel = Personnel(name=row['姓名'], personnel_code=row['工号'],
+                                  department_id=existing_department.id, account_id=existing_account.id, is_student=is_student)
+
+        db.session.add(new_personnel)
+        db.session.commit()
+
+        existing_personnel = db.session.query(Personnel).filter(Personnel.personnel_code == row['工号']).first()
+
+        if existing_account is None:
+            return make_response(({
+                                      'code': 40004,
+                                      'message': f'{row["姓名"]}创建人员失败'
+                                  }, 200, headers))
+
+    return make_response(({
+                              'code': 20000,
+                              'message': '所有创建人员成功'
+                          }, 200, headers))
 
 
 """部门管理模块
@@ -289,16 +479,16 @@ def department_list():
     result_data = []
     for row in data_by_query:
         row_dict = row.__dict__
-        print(row.superior_department)
+        # print(row.superior_department)
         if '_sa_instance_state' in row_dict:
             del row_dict['_sa_instance_state']
         print(row.superior_department_id)
         if row.superior_department_id is None:
             superior_department_name = '无'
         else:
-            superior_department = db.session.query(Department).filter(
-                Department.superior_department == row.superior_department).first()
-            superior_department_name = superior_department.name
+            for d in data_by_query:
+                if d.id == row.superior_department_id:
+                    superior_department_name = d.name
         row_dict['superior_department_name'] = superior_department_name
         result_data.append(row_dict)
 
@@ -317,17 +507,68 @@ def department_list():
 
 @app.route('/api/department/create', methods=['POST'])
 def department_create():
-    pass
+    data = request.get_json()
+    name = data['name']
+    superior_department_id = data.get('superiorDepartment', None)
+    description = data['description']
+    existing_department = db.session.query(Department).filter(Department.name == name).first()
+    if existing_department is not None:
+        return make_response(({
+                                  'code': 40004,
+                                  'message': '账号已存在'
+                              }, 200, headers))
+
+    new_department = Department(name=name, superior_department_id=superior_department_id,
+                                description=description)
+    db.session.add(new_department)
+    db.session.commit()
+
+    existing_department = db.session.query(Department).filter(Department.name == name).first()
+
+    if existing_department is None:
+        return make_response(({
+                                  'code': 40004,
+                                  'message': '创建账号失败'
+                              }, 200, headers))
+
+    return make_response(({
+                              'code': 20000,
+                              'message': 'success'
+                          }, 200, headers))
 
 
 @app.route('/api/department/update', methods=['POST'])
 def department_update():
-    pass
+    data = request.get_json()
+    id = data['id']
+    existing_department = db.session.query(Department).filter(Department.id == id).first()
+    if existing_department is None:
+        return make_response(({
+                                  'code': 40004,
+                                  'message': '账号不存在'
+                              }, 200, headers))
+
+    new_department = db.session.query(Department).filter(Department.name == existing_department.name) \
+        .update({'name': data['name'], 'description': data['description'],
+                 'superior_department_id': data['superior_department_id']})
+    db.session.commit()
+
+    return make_response(({
+                              'code': 20000,
+                              'message': '组织信息更新成功'
+                          }, 200, headers))
 
 
-@app.route('/api/department/delete')
-def department_delete():
-    pass
+@app.route('/api/department/delete/<int:id>')
+def department_delete(id):
+    department_id = id
+    try:
+        db.session.query(Department).filter(Department.id == department_id).delete()
+    except sqlalchemy.exc.IntegrityError as e:
+        return make_response(({'code': 50000, 'message': str(e)}, 500, headers))
+    else:
+        db.session.commit()
+    return make_response(({'code': 20000, 'message': '组织删除成功'}, 200, headers))
 
 
 """成绩管理模块
@@ -353,15 +594,11 @@ def score_list():
         row_dict = row.__dict__
         if '_sa_instance_state' in row_dict:
             del row_dict['_sa_instance_state']
-        em_list = []
-        for r in row.evaluation_material:
-            r_dict = r.__dict__
-            if '_sa_instance_state' in r_dict:
-                del r_dict['_sa_instance_state']
-            em_list.append((r_dict))
-        row_dict['evaluation_material_list'] = em_list
+        student = db.session.query(Personnel).filter(Personnel.id == row.student_id).first()
+        row_dict['student_name'] = student.name
+        row_dict['personnel_code'] = student.personnel_code
         result_data.append(row_dict)
-    print(result_data)
+
 
     count = db.session.query(ScoreRecord).count()
 
@@ -378,17 +615,68 @@ def score_list():
 
 @app.route('/api/score/create', methods=['POST'])
 def score_create():
-    pass
+    data = request.get_json()
+    name = data['name']
+    personnel_code = data['personnel_code']
+    score_type = data['score_type']
+    score = data['score']
+    gain_time = data['gain_time']
+
+    student = db.session.query(Personnel).filter(Personnel.personnel_code == personnel_code).first()
+
+    new_record = ScoreRecord(name=name, student_id=student.id,
+                             score_type=score_type, score=score, gain_time=gain_time, status=1)
+
+    db.session.add(new_record)
+    db.session.commit()
+
+    # existing_personnel = db.session.query(Personnel).filter(Personnel.personnel_code == personnel_code).first()
+    #
+    # if existing_account is None:
+    #     return make_response(({
+    #                               'code': 40004,
+    #                               'message': '创建人员失败'
+    #                           }, 200, headers))
+
+    return make_response(({
+                              'code': 20000,
+                              'message': '创建人员成功'
+                          }, 200, headers))
 
 
 @app.route('/api/score/update', methods=['POST'])
 def score_update():
-    pass
+    data = request.get_json()
+    id = data['id']
+    existing_record = db.session.query(ScoreRecord).filter(ScoreRecord.id == id).first()
+    if existing_record is None:
+        return make_response(({
+                                  'code': 40004,
+                                  'message': '成绩记录不存在'
+                              }, 200, headers))
+
+    student = db.session.query(Personnel).filter(Personnel.personnel_code == data['personnel_code']).first()
+
+    new_record = db.session.query(ScoreRecord).filter(ScoreRecord.id == existing_record.id) \
+        .update({'name': data['name'], 'student_id': student.id,
+                 'score_type': data['score_type'], 'score': data['score'], 'gain_time': data['gain_time']})
+    db.session.commit()
+
+    return make_response(({
+                              'code': 20000,
+                              'message': '成绩更新成功'
+                          }, 200, headers))
 
 
-@app.route('/api/score/delete')
-def score_delete():
-    pass
+@app.route('/api/score/delete/<int:id>')
+def score_delete(id):
+    try:
+        db.session.query(ScoreRecord).filter(ScoreRecord.id == id).delete()
+    except sqlalchemy.exc.IntegrityError as e:
+        return make_response(({'code': 50000, 'message': str(e)}, 500, headers))
+    else:
+        db.session.commit()
+    return make_response(({'code': 20000, 'message': '成绩删除成功'}, 200, headers))
 
 
 @app.route('/api/score/apply')
@@ -401,9 +689,23 @@ def score_audit():
     pass
 
 
-@app.route('/api/score/import')
+@app.route('/api/score/import', methods=['POST'])
 def score_import():
-    pass
+    data = request.get_json()
+    for row in data:
+        student = db.session.query(Personnel).filter(Personnel.personnel_code == row['学号']).first()
+
+        new_record = ScoreRecord(name=row['成绩名称'], student_id=student.id, score_type=row['分数类型'],
+                                 score=row['分数'], status=1)
+        db.session.add(new_record)
+
+        db.session.commit()
+
+
+    return make_response(({
+                              'code': 20000,
+                              'message': '所有成绩添加成功'
+                          }, 200, headers))
 
 
 """评优记录管理模块
@@ -429,15 +731,7 @@ def evaluation_list():
         row_dict = row.__dict__
         if '_sa_instance_state' in row_dict:
             del row_dict['_sa_instance_state']
-        em_list = []
-        for r in row.evaluation_material:
-            r_dict = r.__dict__
-            if '_sa_instance_state' in r_dict:
-                del r_dict['_sa_instance_state']
-            em_list.append((r_dict))
-        row_dict['evaluation_material_list'] = em_list
         result_data.append(row_dict)
-    print(result_data)
 
     count = db.session.query(EvaluationRecord).count()
 
@@ -452,9 +746,11 @@ def evaluation_list():
     return make_response((response, 200, headers))
 
 
-@app.route('/api/evaluation/create', methods=['POST'])
+@app.route('/api/evaluation/create')
 def evaluation_create():
+    all_students = db.session.query(Personnel).filter(Personnel.is_student == 1).all()
     pass
+
 
 
 @app.route('/api/evaluation/update', methods=['POST'])
@@ -466,13 +762,7 @@ def evaluation_update():
 def evaluation_delete():
     pass
 
+
 @app.route('/api/evaluation/export')
 def evaluation_export():
     pass
-
-
-
-
-
-
-

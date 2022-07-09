@@ -8,32 +8,32 @@ export function fetchDepartmentList(query) {
   })
 }
 
-export function createAccount(data) {
+export function createDepartment(data) {
   return request({
-    url: '/api/account/create',
+    url: '/api/department/create',
     method: 'post',
     data
   })
 }
 
-export function updateAccount(data) {
+export function updateDepartment(data) {
   return request({
-    url: '/api/account/update',
+    url: '/api/department/update',
     method: 'post',
     data
   })
 }
 
-export function deleteAccount(id) {
+export function deleteDepartment(id) {
     return request({
-        url: `/api/account/delete/${id}`,
+        url: `/api/department/delete/${id}`,
         method: 'get',
     })
 }
 
-export function changeAccountStatus(condition) {
+export function changeDepartmentStatus(condition) {
   return request({
-    url: `/api/account/change_status`,
+    url: `/api/department/change_status`,
     method: 'get',
     params: condition
   })

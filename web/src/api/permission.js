@@ -33,8 +33,8 @@ export function deleteAccount(id) {
 
 export function changeAccountStatus(condition) {
   return request({
-    url: `/api/account/change_status`,
-    method: 'get',
+    url: `/api/account/state`,
+    method: 'put',
     params: condition
   })
 }

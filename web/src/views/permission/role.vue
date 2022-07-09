@@ -4,18 +4,18 @@
 
     <el-table :data="rolesList" style="width: 100%;margin-top:30px;" border>
       <el-table-column align="center" label="角色代码" width="220">
-        <template slot-scope="scope">
-          {{ scope.row.key }}
+        <template slot-scope="{row}">
+          {{ row.id }}
         </template>
       </el-table-column>
       <el-table-column align="center" label="角色名称" width="220">
-        <template slot-scope="scope">
-          {{ scope.row.name }}
+        <template slot-scope="{row}">
+          {{ row.name }}
         </template>
       </el-table-column>
       <el-table-column align="header-center" label="备注">
-        <template slot-scope="scope">
-          {{ scope.row.description }}
+        <template slot-scope="{row}">
+          {{ row.description }}
         </template>
       </el-table-column>
       <el-table-column align="center" label="操作">
@@ -104,7 +104,7 @@ export default {
     },
     async getRoles() {
       const res = await getRoles()
-      this.rolesList = res.data
+      this.rolesList = res.data.items
     },
 
     // Reshape the routes structure so that it looks the same as the sidebar

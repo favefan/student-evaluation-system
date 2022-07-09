@@ -2,28 +2,28 @@
   <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.username" placeholder="用户名" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
-      <el-select v-model="listQuery.role" placeholder="角色" clearable class="filter-item" style="width: 180px">
-        <el-option v-for="item in roleTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key" />
+      <!-- <el-select v-model="listQuery.role" placeholder="角色" clearable class="filter-item" style="width: 180px">
+        <el-option v-for="item in roleList" :key="item.id" :label="item.name+'('+item.id+')'" :value="item.id" />
       </el-select>
       <el-select v-model="listQuery.status" placeholder="状态" clearable class="filter-item" style="width: 180px">
         <el-option v-for="item in statusTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key" />
-      </el-select>
+      </el-select> -->
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         过滤
       </el-button>
       <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit" @click="handleCreate">
         新建账号
       </el-button>
-      <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" disabled @click="handleDownload">
+      <!-- <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" disabled @click="handleDownload">
         Export 待定
-      </el-button>
+      </el-button> -->
     </div>
 
     <el-table
       :key="tableKey"
       v-loading="listLoading"
       :data="accountList"
-      border
+      
       fit
       highlight-current-row
       style="width: 100%;"
@@ -113,10 +113,10 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
-          Cancel
+          取消
         </el-button>
         <el-button type="primary" @click="dialogStatus==='create'?createData():updateData()">
-          Confirm
+          确认
         </el-button>
       </div>
     </el-dialog>
@@ -150,7 +150,7 @@ const roleTypeOptions = [
 const statusTypeOptions = [
   { key: '1', display_name: '启用' },
   { key: '0', display_name: '禁用' },
-  { key: '9', display_name: '已删除' }
+  //{ key: '9', display_name: '已删除' }
 ]
 
 export default {
@@ -170,7 +170,7 @@ export default {
       const status2ShowMap = {
         1: '启用',
         0: '禁用',
-        9: '已删除'
+        //9: '已删除'
       }
       return status2ShowMap[status]
     },
@@ -196,10 +196,9 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
-        importance: undefined,
         username: undefined,
-        role: undefined,
-        status: undefined,
+        // role: undefined,
+        // status: undefined,
         sort: '+id'
       },
       importanceOptions: [1, 2, 3],
@@ -223,6 +222,7 @@ export default {
       rolesOptions: [],
       // showReviewer: false,
       temp: {
+        original_username: '',
         status: 1,
         role: '',
         username: '',
@@ -265,10 +265,16 @@ export default {
     },
     handleFilter() {
       this.listQuery.page = 1
+      console.log(this.listQuery)
+      for (let key in this.listQuery) {
+        if (this.listQuery[key] == "") {
+          this.listQuery[key] = undefined
+        }
+      }
       this.getList()
     },
     handleModifyStatus(row, status) {
-      changeAccountStatus({ id: row.id, status: status }).then(() => {
+      changeAccountStatus({ id: row.id, status: status }).then(() => { 
         this.$message({
           message: '账号状态切换成功',
           type: 'success'
@@ -328,6 +334,7 @@ export default {
     },
     handleUpdate(row) {
       this.temp = Object.assign({}, row) // copy obj
+      this.temp.original_username = row.username
       this.temp.timestamp = new Date(this.temp.timestamp)
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
@@ -340,13 +347,12 @@ export default {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
           tempData.timestamp = +new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
-          updateArticle(tempData).then(() => {
-            const index = this.list.findIndex(v => v.id === this.temp.id)
-            this.list.splice(index, 1, this.temp)
+          updateAccount(tempData).then(() => {
+           this.getList()
             this.dialogFormVisible = false
             this.$notify({
               title: 'Success',
-              message: 'Update Successfully',
+              message: '更新成功',
               type: 'success',
               duration: 2000
             })
@@ -355,7 +361,7 @@ export default {
       })
     },
     handleDelete(row, index) {
-      deleteAccount(index).then(() => {
+      deleteAccount(row.id).then(() => {
         this.$notify({
         title: 'Success',
         message: '账号删除成功',

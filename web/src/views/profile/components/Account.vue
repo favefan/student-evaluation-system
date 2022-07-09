@@ -1,11 +1,11 @@
 <template>
   <el-form>
-    <el-form-item label="昵称">
+    <!-- <el-form-item label="昵称">
       <el-input v-model.trim="user.name" :disabled="true" />
     </el-form-item>
     <el-form-item label="Email">
       <el-input v-model.trim="user.email" />
-    </el-form-item>
+    </el-form-item> -->
     <el-form-item label="新密码">
       <el-input placeholder="请输入新密码" show-password />
       <!-- <el-input v-model.trim="user.email" /> -->

@@ -1,9 +1,9 @@
 import datetime
 
 import sqlalchemy
-
-from ses.__init__ import db
 from werkzeug.security import generate_password_hash
+
+from ses.routes import db
 
 
 class Role(db.Model):
@@ -60,12 +60,6 @@ class Account(db.Model):
             db.session.add(user)
             db.session.commit()
 
-    # def to_json(self):
-    #     dict = self.__dict__
-    #     if "_sa_instance_state" in dict:
-    #         del dict["_sa_instance_state"]
-    #     return dict
-
 
 class Personnel(db.Model):
     """人员
@@ -74,9 +68,6 @@ class Personnel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=True, nullable=False)
     personnel_code = db.Column(db.Integer, unique=True, nullable=False)
-    # type = None
-    # sex = None
-    # age = None
     department_id = db.Column(db.Integer, db.ForeignKey('department.id'),
                               nullable=False)
     # department = db.relationship('Department',
@@ -86,6 +77,8 @@ class Personnel(db.Model):
     account = sqlalchemy.orm.relationship('Account', backref=sqlalchemy.orm.backref("personnel", uselist=False))
 
     score_record = sqlalchemy.orm.relationship('ScoreRecord')
+
+    is_student = db.Column(db.Integer, default=0, nullable=False)
 
     create_at = db.Column(db.DateTime, default=datetime.datetime.now)
     update_at = db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
@@ -103,7 +96,7 @@ class Department(db.Model):
     description = db.Column(db.String(250))
     # 自引关系
     superior_department_id = db.Column(db.Integer, db.ForeignKey('department.id'))
-    superior_department = sqlalchemy.orm.relationship('Department', remote_side=[id])
+    # superior_department = sqlalchemy.orm.relationship('Department', remote_side=[id])
     personnel = sqlalchemy.orm.relationship('Personnel')
     create_at = db.Column(db.DateTime, default=datetime.datetime.now)
     update_at = db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
@@ -126,12 +119,12 @@ class ScoreRecord(db.Model):
                            nullable=False)
     score_type = db.Column(db.String(50), nullable=False)
     score = db.Column(db.Integer)
-    # evaluation_material_id = db.Column(db.Integer, db.ForeignKey('evaluation_material.id'),
-    #                                    nullable=False)
-    evaluation_material = sqlalchemy.orm.relationship("EvaluationMaterial", )#backref=sqlalchemy.orm.backref("score_record", uselist=False))
+    evaluation_material_id = db.Column(db.Integer, db.ForeignKey('evaluation_material.id'))
+    # evaluation_material = sqlalchemy.orm.relationship(
+    #     "EvaluationMaterial", )  # backref=sqlalchemy.orm.backref("score_record", uselist=False))
     status = db.Column(db.Integer)  # 0:拒绝 1:审核通过 9:审核中
     description = db.Column(db.Text)
-    gain_time = db.Column(db.DateTime, default=datetime.datetime.now) # 获得时间
+    gain_time = db.Column(db.DateTime, default=datetime.datetime.now)  # 获得时间
 
     def __repr__(self):
         return '<ScoreRecord %r>' % self.name
@@ -145,7 +138,27 @@ class EvaluationMaterial(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     path = db.Column(db.Text, nullable=False)
-    score_record_id = db.Column(db.Integer, db.ForeignKey('score_record.id'))
+    # score_record_id = db.Column(db.Integer, db.ForeignKey('score_record.id'))
 
     def __repr__(self):
         return '<EvaluationMaterial %r>' % self.name
+
+
+class EvaluationRecord(db.Model):
+    """评优记录
+
+    奖项名称, 获得日期, 获得者ID"""
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), unique=True, nullable=False)
+    release_datetime = db.Column(db.DateTime, default=datetime.datetime.now)
+    personnel_id = db.Column(db.Integer, db.ForeignKey('personnel.id'),
+                             nullable=False)
+
+    gain_time = db.Column(db.DateTime, default=datetime.datetime.now)  # 获得时间
+
+    # rule_id = db.Column(db.Integer, db.ForeignKey('evaluation_rule.id'),
+    #                     nullable=False)
+    # rule = db.Column(db.String(300))
+
+    def __repr__(self):
+        return '<EvaluationRecord %r>' % self.name

@@ -1,6 +1,6 @@
 <template>
   <div class="user-activity">
-    <div class="post">
+    <!-- <div class="post">
       <div class="user-block">
         <img class="img-circle" :src="'https://wpimg.wallstcn.com/57ed425a-c71e-4201-9428-68760c0537c4.jpg'+avatarPrefix">
         <span class="username text-muted">Iron Man</span>
@@ -76,7 +76,7 @@
             <svg-icon icon-class="like" /> Like</span>
         </li>
       </ul>
-    </div>
+    </div> -->
   </div>
 </template>
 
